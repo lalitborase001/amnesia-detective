@@ -315,6 +315,39 @@ body {
 .btn-cancel { padding: 8px 16px; background: none; border: 1px solid var(--noir-border); border-radius: var(--radius-sm); color: var(--noir-muted); cursor: pointer; font-family: var(--font-body); }
 .btn-deduce { padding: 8px 20px; background: var(--noir-amber); border: none; border-radius: var(--radius-sm); color: var(--noir-black); font-weight: 700; cursor: pointer; font-family: var(--font-body); }
 
+.memory-graph {
+  grid-area: graph;
+  background: var(--noir-dark);
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.graph-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--noir-muted);
+  font-size: 13px;
+}
+.graph-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 11px;
+}
+.pulse-node {
+  animation: pulse-node-anim 1.4s infinite;
+}
+@keyframes pulse-node-anim {
+  0%, 100% { stroke-opacity: 1; }
+  50%       { stroke-opacity: 0.3; }
+}
+.graph-node text { pointer-events: none; user-select: none; }
+.graph-node circle { cursor: grab; }
+.graph-node circle:active { cursor: grabbing; }
+
 /* ── Hack Alert ─────────────────────────────────────────── */
 .hack-alert-panel {
   position: fixed; top: 80px; right: 24px;

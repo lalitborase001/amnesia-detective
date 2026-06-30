@@ -4,14 +4,12 @@
 
 import { useEffect, useState } from "react";
 import { useGameStore } from "./stores/gameStore";
-import {
-  EvidenceBoard,
-  AIPartner,
-  InterrogationPanel,
-  DeduceModal,
-  HackAlert,
-  MemoryGraph,
-} from "./components/index.jsx";
+import { EvidenceBoard } from "./components/EvidenceBoard.jsx";
+import { AIPartner } from "./components/AIPartner.jsx";
+import { InterrogationPanel } from "./components/InterrogationPanel.jsx";
+import { DeduceModal } from "./components/DeduceModal.jsx";
+import { HackAlert } from "./components/HackAlert.jsx";
+import { MemoryGraph } from "./components/MemoryGraph.jsx";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
 
