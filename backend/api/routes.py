@@ -73,6 +73,32 @@ async def list_cases():
 
 
 # ---------------------------------------------------------------------------
+# GET /api/case/{case_id}  — full case data, evidence filtered by unlock state
+# ---------------------------------------------------------------------------
+
+@router.get("/case/{case_id}")
+async def get_case(case_id: str):
+    session = get_session(case_id)
+    case_data = session["case_data"]
+    count = session["evidence_count"]
+
+    # Only return evidence the player has unlocked so far
+    unlocked = [e for e in case_data["evidence"] if e["unlocked_at"] <= count]
+
+    return {
+        "id": case_data["id"],
+        "title": case_data["title"],
+        "subtitle": case_data["subtitle"],
+        "setting": case_data["setting"],
+        "year": case_data["year"],
+        "suspects": case_data["suspects"],
+        "unlocked_evidence": unlocked,
+        "total_evidence": len(case_data["evidence"]),
+        "evidence_count": count,
+    }
+
+
+# ---------------------------------------------------------------------------
 # POST /api/remember  — player drops an evidence card
 # Cognee: cognee.add() + cognee.cognify()
 # ---------------------------------------------------------------------------

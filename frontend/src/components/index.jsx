@@ -2,6 +2,7 @@
 // Drag-and-drop evidence cards. Click to select for Deduce.
 // Status ring color = memory status from Cognee graph.
 
+import { useState } from "react";
 import { useCognee } from "../hooks/useCognee";
 import { useGameStore } from "../stores/gameStore";
 
@@ -132,7 +133,6 @@ function Meter({ label, count, color }) {
 // components/InterrogationPanel.jsx
 // Player types natural language questions → recall() → VERA answers.
 
-import { useState } from "react";
 
 export function InterrogationPanel() {
   const { recall } = useCognee();

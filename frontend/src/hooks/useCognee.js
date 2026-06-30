@@ -37,6 +37,15 @@ export function useCognee() {
       addMemoryNode(data.memory_node);
       addLogEntry({ op: "remember", msg: data.api_call, status: "success" });
 
+      // Pull any newly unlocked evidence now that evidence_count increased
+      const caseRes = await fetch(`${API}/case/${caseId}`);
+      const caseJson = await caseRes.json();
+      caseJson.unlocked_evidence.forEach((card) => {
+        if (!useGameStore.getState().unlockedEvidence.find((u) => u.id === card.id)) {
+          useGameStore.getState().unlockEvidence(card);
+        }
+      });
+
       // Hack event fired by server?
       if (data.hack_fired?.fired) {
         setHackAlert({

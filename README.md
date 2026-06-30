@@ -103,3 +103,46 @@ Drop a new JSON file in `backend/cases/` following this schema:
 ```
 
 That's it. The backend auto-loads all case files on startup.
+
+## How to Run
+
+### Prerequisites
+- Python 3.10+
+- Node.js 18+
+- An Anthropic API key
+- Cognee requires an LLM provider — we use Anthropic for everything
+
+### 1. Get the code onto your machine
+Download all files from this conversation and place them into the folder
+structure shown above (or unzip if you exported a zip). Confirm the tree
+matches:
+
+```text
+amnesia-detective/
+├── backend/
+│   ├── __init__.py
+│   ├── requirements.txt
+│   ├── .env.example
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   └── routes.py
+│   ├── cases/
+│   │   ├── __init__.py
+│   │   ├── case_schema.py
+│   │   └── the_venetian_job.json
+│   └── cognee_layer/
+│       ├── __init__.py
+│       └── memory_ops.py
+└── frontend/
+    ├── package.json
+    ├── vite.config.js
+    ├── index.html
+    ├── .env.example
+    └── src/
+        ├── main.jsx
+        ├── App.jsx
+        ├── components/index.jsx
+        ├── hooks/useCognee.js
+        ├── stores/gameStore.js
+        └── styles/noir.css
