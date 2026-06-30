@@ -1,0 +1,128 @@
+{
+  "id": "case-001",
+  "title": "The Venetian Job",
+  "subtitle": "A diamond vanishes. A man is dead. Your AI remembers nothing.",
+  "setting": "Venice, Italy — February 1954. Carnival season. The fog never lifts.",
+  "year": 1954,
+
+  "suspects": [
+    {
+      "id": "suspect-romano",
+      "name": "Luca Romano",
+      "description": "Hotel concierge. Thin smile. Knows everyone's business.",
+      "alibi": "Claims he was at the front desk all evening.",
+      "is_culprit": false
+    },
+    {
+      "id": "suspect-bellini",
+      "name": "Carla Bellini",
+      "description": "The victim's business partner. Cold as the canal water.",
+      "alibi": "Says she attended the Carnival masquerade until midnight.",
+      "is_culprit": true
+    },
+    {
+      "id": "suspect-morrow",
+      "name": "Arthur Morrow",
+      "description": "American art dealer. Too much money, too many secrets.",
+      "alibi": "Claims he was gambling at the Danieli bar.",
+      "is_culprit": false
+    }
+  ],
+
+  "evidence": [
+    {
+      "id": "ev-001",
+      "title": "Bellboy's testimony",
+      "text": "I saw a woman in a red mask leaving Room 14 at approximately 11:15 PM. She was carrying a small black case. She took the service stairs, not the main elevator. I'd recognize that mask anywhere — it was from Moretti's shop on the Rialto.",
+      "source": "Witness — Marco (bellboy)",
+      "category": "timeline",
+      "unlocked_at": 0,
+      "is_red_herring": false
+    },
+    {
+      "id": "ev-002",
+      "title": "Victim's appointment book",
+      "text": "February 14th entry reads: 'C.B. — 11 PM — the matter of the Colombo shares.' The initials C.B. appear three more times in the prior week. Each meeting is marked with a small diamond symbol in the margin.",
+      "source": "Police report — Inspector Deluca",
+      "category": "motive",
+      "unlocked_at": 0,
+      "is_red_herring": false
+    },
+    {
+      "id": "ev-003",
+      "title": "Carnival ticket stub",
+      "text": "A ticket stub for the Grand Masquerade at Palazzo Fortuny was found in Carla Bellini's coat pocket. Stamped entry time: 9:47 PM. However, the exit log — a paper ledger — shows no exit record for Mask ID #228, which was registered to Bellini.",
+      "source": "Police report — Inspector Deluca",
+      "category": "alibi",
+      "unlocked_at": 1,
+      "is_red_herring": false
+    },
+    {
+      "id": "ev-004",
+      "title": "Moretti's mask shop receipt",
+      "text": "Shop owner Aldo Moretti confirms selling a red Colombina mask on February 12th. The purchaser paid cash. Moretti's description: 'A tall woman, dark hair, good coat. She also bought a second mask — plain white — and paid for express alterations on both.'",
+      "source": "Witness — Aldo Moretti (shopkeeper)",
+      "category": "evidence",
+      "unlocked_at": 1,
+      "is_red_herring": false
+    },
+    {
+      "id": "ev-005",
+      "title": "Romano's staff log",
+      "text": "The front desk log shows Romano processed four room service orders between 10 PM and midnight. However, the kitchen staff report only three orders during that period. The fourth entry — Room 14, champagne, 11:05 PM — has no corresponding kitchen ticket.",
+      "source": "Hotel records",
+      "category": "alibi",
+      "unlocked_at": 2,
+      "is_red_herring": true
+    },
+    {
+      "id": "ev-006",
+      "title": "Canal-side witness",
+      "text": "A gondolier named Pio reports picking up a lone female passenger at the service canal entrance of Hotel Excelsior at 11:40 PM. She wore a white mask. She paid double fare to go directly to Santa Lucia station without stopping. He remembers because she tipped in American dollars.",
+      "source": "Witness — Pio (gondolier)",
+      "category": "timeline",
+      "unlocked_at": 3,
+      "is_red_herring": false
+    },
+    {
+      "id": "ev-007",
+      "title": "Train manifest",
+      "text": "The 12:15 AM Simplon Orient Express departing Santa Lucia had one last-minute first-class booking: a 'Clara Bauer' — cash purchase, no luggage check. The compartment was found with a discarded white carnival mask and a Moretti's shop bag.",
+      "source": "Railway authority records",
+      "category": "timeline",
+      "unlocked_at": 4,
+      "is_red_herring": false
+    }
+  ],
+
+  "hack_events": [
+    {
+      "at_evidence_count": 3,
+      "inject_text": "Romano was seen arguing with the victim in the hotel bar at 10:30 PM by two guests. He threatened the victim over an unpaid debt, according to one witness who wishes to remain anonymous.",
+      "contradicts_evidence_id": "ev-005"
+    },
+    {
+      "at_evidence_count": 6,
+      "inject_text": "Arthur Morrow's gambling alibi has been corroborated by the Danieli bar manager and two croupiers who confirm he was present from 9 PM until well after midnight without interruption.",
+      "contradicts_evidence_id": "ev-006"
+    }
+  ],
+
+  "solution": {
+    "culprit_id": "suspect-bellini",
+    "motive": "Carla Bellini stood to lose a 40% stake in the Colombo diamond business if the victim proceeded with the partnership dissolution.",
+    "method": "Bellini used two masks — entering the masquerade as herself to establish presence, then slipping out via service exit wearing the white mask to meet the victim. She returned via gondola to the station."
+  },
+
+  "win_condition": {
+    "required_deductions": [
+      "Bellini's exit was not logged — her alibi is fabricated",
+      "The red mask and white mask were both purchased by the same person",
+      "Clara Bauer is an alias — the train booking confirms flight from the scene"
+    ],
+    "must_forget": [
+      "Romano was seen arguing with the victim"
+    ],
+    "accuse": "suspect-bellini"
+  }
+}
